@@ -1,3 +1,32 @@
+# Xcode
+*~
+.DS_Store
+
+*.mode1
+*.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
+*.pbxuser
+!default.pbxuser
+*.xcsettings
+*.xcworkspacedata
+*.xcuserstate
+*.xccheckout
+*.xcscmblueprint
+xcuserdata
+build
+
+## Other
+*.moved-aside
+
+## Obj-C/Swift specific
+*.hmap
+*.ipa
+
+
 *.bc
 *.cmake
 *.done
@@ -12,14 +41,11 @@
 *.mem
 *.nexe
 *.o
-*.plist
 *.s
 *.scan
 *.sdf
 *.status
 *.tar.*
-*~
-.DS_Store
 .deps
 .dirstamp
 .done
