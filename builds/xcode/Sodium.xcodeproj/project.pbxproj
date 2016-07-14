@@ -240,6 +240,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C127D3E81D37F6C200E6CC1B /* configure.ac */ = {isa = PBXFileReference; lastKnownFileType = text; name = configure.ac; path = ../../configure.ac; sourceTree = "<group>"; };
 		C1932BE11D30592D00636CBE /* Sodium.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Sodium.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1932BE41D30592D00636CBE /* Sodium.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Sodium.h; sourceTree = "<group>"; };
 		C1932BE61D30592D00636CBE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -493,6 +494,7 @@
 			isa = PBXGroup;
 			children = (
 				C1932BE31D30592D00636CBE /* Sodium */,
+				C127D3E81D37F6C200E6CC1B /* configure.ac */,
 				C1932BEC1D305A4D00636CBE /* src */,
 				C1932BE21D30592D00636CBE /* Products */,
 			);
