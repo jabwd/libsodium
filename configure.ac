@@ -1,5 +1,5 @@
 AC_PREREQ([2.65])
-AC_INIT([libsodium],[1.0.10],
+AC_INIT([libsodium],[1.0.11],
   [https://github.com/jedisct1/libsodium/issues],
   [libsodium],
   [https://github.com/jedisct1/libsodium])
@@ -17,9 +17,9 @@ ISODATE=`date +%Y-%m-%d`
 AC_SUBST(ISODATE)
 
 SODIUM_LIBRARY_VERSION_MAJOR=9
-SODIUM_LIBRARY_VERSION_MINOR=2
+SODIUM_LIBRARY_VERSION_MINOR=3
 DLL_VERSION=8
-SODIUM_LIBRARY_VERSION=19:0:1
+SODIUM_LIBRARY_VERSION=19:1:1
 #                       | | |
 #                +------+ | +---+
 #                |        |     |
@@ -40,8 +40,8 @@ LX_CFLAGS=${CFLAGS-NONE}
 
 dnl Path check
 
-AS_IF([test pwd | fgrep ' ' > /dev/null 2>&1],
-  [AC_MSG_WARN([The build directory contains whitespaces - This can cause tests/installation to fail due to limitations of some libtool versions])]
+AS_IF([pwd | fgrep ' ' > /dev/null 2>&1],
+  [AC_MSG_ERROR([The build directory contains whitespaces - This can cause tests/installation to fail due to limitations of some libtool versions])]
 )
 
 dnl Switches
@@ -72,9 +72,13 @@ AC_ARG_ENABLE(asm,
   enable_asm="yes"
 ])
 
-AS_IF([test "x$EMSCRIPTEN" != "x"],[
+AS_IF([test "x$EMSCRIPTEN" != "x"], [
   enable_asm="no"
-  AC_MSG_WARN([compiling to javascript - asm implementations disabled])
+  AC_MSG_WARN([compiling to JavaScript - asm implementations disabled])
+])
+AS_IF([test "$host_os" = "nacl" -o "$host_os" = "pnacl"], [
+  enable_asm="no"
+  AC_MSG_WARN([compiling to Native Client - asm implementations disabled])
 ])
 
 AC_ARG_ENABLE(pie,
@@ -297,7 +301,7 @@ AC_CHECK_TOOL([AR], [ar], [ar])
 
 dnl Checks for headers
 
-AS_IF([test "x$EMSCRIPTEN" = "x"],[
+AS_IF([test "x$EMSCRIPTEN" = "x" -a "$host_os" != "pnacl"], [
 
   AC_MSG_CHECKING(for MMX instructions set)
   oldcflags="$CFLAGS"
@@ -373,6 +377,9 @@ AS_IF([test "x$EMSCRIPTEN" = "x"],[
   AX_CHECK_COMPILE_FLAG([-mavx], [CFLAGS="$CFLAGS -mavx"])
   AC_MSG_CHECKING(for AVX instructions set)
   AC_COMPILE_IFELSE([AC_LANG_PROGRAM([[
+#ifdef __native_client__
+# error NativeClient detected - Avoiding AVX opcodes
+#endif
 #pragma GCC target("avx")
 #include <immintrin.h>
 ]], [[ _mm256_zeroall(); ]])],
@@ -386,6 +393,9 @@ AS_IF([test "x$EMSCRIPTEN" = "x"],[
   AX_CHECK_COMPILE_FLAG([-mavx2], [CFLAGS="$CFLAGS -mavx2"])
   AC_MSG_CHECKING(for AVX2 instructions set)
   AC_COMPILE_IFELSE([AC_LANG_PROGRAM([[
+#ifdef __native_client__
+# error NativeClient detected - Avoiding AVX2 opcodes
+#endif
 #pragma GCC target("avx2")
 #include <immintrin.h>
 ]], [[ __m256i x = _mm256_abs_epi8(_mm256_setzero_si256()); ]])],
@@ -394,6 +404,9 @@ AS_IF([test "x$EMSCRIPTEN" = "x"],[
      AX_CHECK_COMPILE_FLAG([-mavx2], [CFLAGS_AVX="-mavx2"])
      AC_MSG_CHECKING(if _mm256_broadcastsi128_si256 is correctly defined)
      AC_COMPILE_IFELSE([AC_LANG_PROGRAM([[
+#ifdef __native_client__
+# error NativeClient detected - Avoiding AVX2 opcodes
+#endif
 #pragma GCC target("avx2")
 #include <immintrin.h>
      ]], [[ __m256i y = _mm256_broadcastsi128_si256(_mm_setzero_si128()); ]])],
@@ -410,6 +423,9 @@ AS_IF([test "x$EMSCRIPTEN" = "x"],[
   AX_CHECK_COMPILE_FLAG([-mpclmul], [CFLAGS="$CFLAGS -mpclmul"])
   AC_MSG_CHECKING(for AESNI instructions set and PCLMULQDQ)
   AC_COMPILE_IFELSE([AC_LANG_PROGRAM([[
+#ifdef __native_client__
+# error NativeClient detected - Avoiding AESNI opcodes
+#endif
 #pragma GCC target("aes")
 #pragma GCC target("pclmul")
 #include <wmmintrin.h>
@@ -553,7 +569,7 @@ AM_CONDITIONAL([HAVE_TI_MODE], [test $HAVE_TI_MODE_V = 1])
 AC_SUBST(HAVE_TI_MODE_V)
 
 HAVE_CPUID_V=0
-AS_IF([test "$enable_asm" != "no"],[
+AS_IF([test "$enable_asm" != "no" -o "$host_alias" = "x86_64-nacl"],[
   AC_MSG_CHECKING(for cpuid instruction)
   AC_COMPILE_IFELSE([AC_LANG_PROGRAM([[ ]], [[
 unsigned int cpu_info[4];
@@ -570,7 +586,7 @@ __asm__ __volatile__ ("xchgl %%ebx, %k1; cpuid; xchgl %%ebx, %k1" :
 AC_SUBST(HAVE_CPUID_V)
 
 asm_hide_symbol="unsupported"
-AS_IF([test "$enable_asm" != "no"],[
+AS_IF([test "$enable_asm" != "no" -o "$host_os" = "nacl"],[
   AC_MSG_CHECKING(if the .private_extern asm directive is supported)
   AC_LINK_IFELSE([AC_LANG_PROGRAM([[ ]], [[
 __asm__ __volatile__ (".private_extern dummy_symbol \n"
@@ -644,7 +660,7 @@ dnl Checks for functions and headers
 
 AS_IF([test "x$EMSCRIPTEN" = "x"],[
   AC_CHECK_FUNCS([arc4random arc4random_buf])
-  AC_CHECK_FUNCS([mmap mlock madvise mprotect explicit_bzero])
+  AC_CHECK_FUNCS([mmap mlock madvise mprotect explicit_bzero nanosleep])
 ])
 AC_CHECK_FUNCS([posix_memalign getpid])
 
@@ -659,6 +675,8 @@ AC_SUBST(TEST_LDFLAGS)
 AM_CONDITIONAL([EMSCRIPTEN], [test "x$EMSCRIPTEN" != "x"])
 
 AM_CONDITIONAL([NATIVECLIENT], [test "x$NATIVECLIENT" != "x"])
+
+AC_DEFINE([CONFIGURED], [1], [the build system was properly configured])
 
 dnl Libtool.
 
