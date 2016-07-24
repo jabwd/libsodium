@@ -475,7 +475,7 @@
 		C1932D2E1D305A4D00636CBE /* runtime.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = runtime.c; sourceTree = "<group>"; };
 		C1932D2F1D305A4D00636CBE /* utils.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = utils.c; sourceTree = "<group>"; };
 		C1932D301D305A4D00636CBE /* version.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = version.c; sourceTree = "<group>"; };
-		C1932D331D3147A700636CBE /* version.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = version.h; path = ../include/sodium/version.h; sourceTree = "<group>"; };
+		C1932D331D3147A700636CBE /* version.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = version.h; path = ../../../builds/msvc/version.h; sourceTree = "<group>"; };
 		C1B2E8FA1D3168A60071609F /* module.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
