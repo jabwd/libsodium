@@ -63,7 +63,7 @@ android-toolchain-*
 autom4te.cache
 build
 compile
-confdefs.h
+#confdefs.h
 config.*
 configure
 configure.lineno

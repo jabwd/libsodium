@@ -240,7 +240,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		C127D3E81D37F6C200E6CC1B /* configure.ac */ = {isa = PBXFileReference; lastKnownFileType = text; name = configure.ac; path = ../../configure.ac; sourceTree = "<group>"; };
+		C127D3E81D37F6C200E6CC1B /* configure.ac */ = {isa = PBXFileReference; lastKnownFileType = text; name = configure.ac; path = ../../configure.ac; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.c; };
+		C13257081D42A62D00BF1895 /* confdefs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = confdefs.h; sourceTree = "<group>"; };
 		C1932BE11D30592D00636CBE /* Sodium.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Sodium.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1932BE41D30592D00636CBE /* Sodium.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Sodium.h; sourceTree = "<group>"; };
 		C1932BE61D30592D00636CBE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -477,6 +478,14 @@
 		C1932D301D305A4D00636CBE /* version.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = version.c; sourceTree = "<group>"; };
 		C1932D331D3147A700636CBE /* version.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = version.h; path = ../../../builds/msvc/version.h; sourceTree = "<group>"; };
 		C1B2E8FA1D3168A60071609F /* module.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
+		C1E53AE91D45796E00E116A3 /* Makefile.am */ = {isa = PBXFileReference; lastKnownFileType = text; path = Makefile.am; sourceTree = "<group>"; };
+		C1E53AEA1D4579C100E116A3 /* Makefile.am */ = {isa = PBXFileReference; lastKnownFileType = text; path = Makefile.am; sourceTree = "<group>"; };
+		C1F146511D4527CB00F319B9 /* xcode-ios-simulator32.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = "xcode-ios-simulator32.sh"; path = "../../../dist-build/xcode-ios-simulator32.sh"; sourceTree = "<group>"; };
+		C1F146521D4527CB00F319B9 /* xcode-ios-simulator64.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = "xcode-ios-simulator64.sh"; path = "../../../dist-build/xcode-ios-simulator64.sh"; sourceTree = "<group>"; };
+		C1F146531D4527CB00F319B9 /* xcode-ios32.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = "xcode-ios32.sh"; path = "../../../dist-build/xcode-ios32.sh"; sourceTree = "<group>"; };
+		C1F146541D4527CB00F319B9 /* xcode-ios64.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = "xcode-ios64.sh"; path = "../../../dist-build/xcode-ios64.sh"; sourceTree = "<group>"; };
+		C1F146551D4527CB00F319B9 /* xcode-readme.txt */ = {isa = PBXFileReference; lastKnownFileType = text; name = "xcode-readme.txt"; path = "../../../dist-build/xcode-readme.txt"; sourceTree = "<group>"; };
+		C1F146561D4527E200F319B9 /* confdefsTemplate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = confdefsTemplate.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -512,8 +521,10 @@
 			isa = PBXGroup;
 			children = (
 				C1932BE41D30592D00636CBE /* Sodium.h */,
+				C13257081D42A62D00BF1895 /* confdefs.h */,
 				C1932BE61D30592D00636CBE /* Info.plist */,
 				C1B2E8FA1D3168A60071609F /* module.modulemap */,
+				C1F146501D4527AC00F319B9 /* configure scripts */,
 			);
 			path = Sodium;
 			sourceTree = "<group>";
@@ -530,6 +541,7 @@
 		C1932BED1D305A4D00636CBE /* libsodium */ = {
 			isa = PBXGroup;
 			children = (
+				C1E53AE91D45796E00E116A3 /* Makefile.am */,
 				C1932CE11D305A4D00636CBE /* include */,
 				C1932D2C1D305A4D00636CBE /* sodium */,
 				C1932BEE1D305A4D00636CBE /* crypto_aead */,
@@ -632,13 +644,13 @@
 				C1932C2C1D305A4D00636CBE /* generichash_blake2_api.c */,
 				C1932C2E1D305A4D00636CBE /* blake2-impl.h */,
 				C1932C2F1D305A4D00636CBE /* blake2.h */,
-				C1932C301D305A4D00636CBE /* blake2b-compress-avx2.c */,
 				C1932C311D305A4D00636CBE /* blake2b-compress-avx2.h */,
+				C1932C301D305A4D00636CBE /* blake2b-compress-avx2.c */,
 				C1932C321D305A4D00636CBE /* blake2b-compress-ref.c */,
-				C1932C331D305A4D00636CBE /* blake2b-compress-sse41.c */,
 				C1932C341D305A4D00636CBE /* blake2b-compress-sse41.h */,
-				C1932C351D305A4D00636CBE /* blake2b-compress-ssse3.c */,
+				C1932C331D305A4D00636CBE /* blake2b-compress-sse41.c */,
 				C1932C361D305A4D00636CBE /* blake2b-compress-ssse3.h */,
+				C1932C351D305A4D00636CBE /* blake2b-compress-ssse3.c */,
 				C1932C371D305A4D00636CBE /* blake2b-load-avx2.h */,
 				C1932C381D305A4D00636CBE /* blake2b-load-sse2.h */,
 				C1932C391D305A4D00636CBE /* blake2b-load-sse41.h */,
@@ -857,6 +869,7 @@
 		C1932CE11D305A4D00636CBE /* include */ = {
 			isa = PBXGroup;
 			children = (
+				C1E53AEA1D4579C100E116A3 /* Makefile.am */,
 				C1932D211D305A4D00636CBE /* sodium.h */,
 				C1932CE41D305A4D00636CBE /* sodium */,
 			);
@@ -916,6 +929,19 @@
 				C1932D201D305A4D00636CBE /* version.h.in */,
 			);
 			path = sodium;
+			sourceTree = "<group>";
+		};
+		C1F146501D4527AC00F319B9 /* configure scripts */ = {
+			isa = PBXGroup;
+			children = (
+				C1F146551D4527CB00F319B9 /* xcode-readme.txt */,
+				C1F146561D4527E200F319B9 /* confdefsTemplate.h */,
+				C1F146511D4527CB00F319B9 /* xcode-ios-simulator32.sh */,
+				C1F146521D4527CB00F319B9 /* xcode-ios-simulator64.sh */,
+				C1F146531D4527CB00F319B9 /* xcode-ios32.sh */,
+				C1F146541D4527CB00F319B9 /* xcode-ios64.sh */,
+			);
+			name = "configure scripts";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1250,7 +1276,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "-";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 10010;
 				DEBUG_INFORMATION_FORMAT = dwarf;
@@ -1270,10 +1296,9 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = macosx;
+				SDKROOT = iphoneos;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -1297,7 +1322,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "-";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 10010;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -1311,9 +1336,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				SDKROOT = macosx;
+				SDKROOT = iphoneos;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -1323,21 +1347,25 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1.0;
 				DYLIB_CURRENT_VERSION = 1.0;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_VERSION = A;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SOURCE_ROOT)/Sodium/confdefs.h";
 				HEADER_SEARCH_PATHS = "\"$(SOURCE_ROOT)/../../src/libsodium/include/sodium\"";
 				INFOPLIST_FILE = Sodium/Info.plist;
+				INSTALL_PATH = "@rpath";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = Sodium/module.modulemap;
 				PRODUCT_BUNDLE_IDENTIFIER = org.pureftpd.Sodium.framework;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
+				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -1345,21 +1373,25 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1.0;
 				DYLIB_CURRENT_VERSION = 1.0;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_VERSION = A;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SOURCE_ROOT)/Sodium/confdefs.h";
 				HEADER_SEARCH_PATHS = "\"$(SOURCE_ROOT)/../../src/libsodium/include/sodium\"";
 				INFOPLIST_FILE = Sodium/Info.plist;
+				INSTALL_PATH = "@rpath";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = Sodium/module.modulemap;
 				PRODUCT_BUNDLE_IDENTIFIER = org.pureftpd.Sodium.framework;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
+				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
