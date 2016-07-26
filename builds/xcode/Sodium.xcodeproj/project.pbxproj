@@ -1355,12 +1355,23 @@
 				FRAMEWORK_VERSION = A;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SOURCE_ROOT)/Sodium/confdefs.h";
+				GCC_STRICT_ALIASING = NO;
 				HEADER_SEARCH_PATHS = "\"$(SOURCE_ROOT)/../../src/libsodium/include/sodium\"";
 				INFOPLIST_FILE = Sodium/Info.plist;
 				INSTALL_PATH = "@rpath";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = Sodium/module.modulemap;
+				"OTHER_CFLAGS[sdk=iphonesimulator*]" = (
+					"-maes",
+					"-mavx2",
+					"-mmmx",
+					"-mpclmul",
+					"-msse2",
+					"-msse3",
+					"-msse4.1",
+					"-mssse3",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = org.pureftpd.Sodium.framework;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -1381,12 +1392,24 @@
 				FRAMEWORK_VERSION = A;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SOURCE_ROOT)/Sodium/confdefs.h";
+				GCC_STRICT_ALIASING = NO;
 				HEADER_SEARCH_PATHS = "\"$(SOURCE_ROOT)/../../src/libsodium/include/sodium\"";
 				INFOPLIST_FILE = Sodium/Info.plist;
 				INSTALL_PATH = "@rpath";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				LLVM_LTO = YES;
 				MODULEMAP_FILE = Sodium/module.modulemap;
+				"OTHER_CFLAGS[sdk=iphonesimulator*]" = (
+					"-maes",
+					"-mavx2",
+					"-mmmx",
+					"-mpclmul",
+					"-msse2",
+					"-msse3",
+					"-msse4.1",
+					"-mssse3",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = org.pureftpd.Sodium.framework;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
