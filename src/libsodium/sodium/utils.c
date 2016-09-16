@@ -55,7 +55,7 @@
 # define MADV_DONTDUMP MADV_NOCORE
 #endif
 
-static size_t page_size;
+//static size_t page_size;
 static unsigned char canary[CANARY_SIZE];
 
 #ifdef HAVE_WEAK_SYMBOLS
