@@ -278,6 +278,18 @@ int decode_string(argon2_context *ctx, const char *str, argon2_type type) {
         }                                                                      \
         (x) = dec_x;                                                           \
     } while ((void)0, 0)
+    
+    
+    /* Decoding prefix into decimal */
+#define DECIMALUINT32(x)                                                             \
+do {                                                                       \
+unsigned long dec_x;                                                   \
+str = decode_decimal(str, &dec_x);                                     \
+if (str == NULL) {                                                     \
+return ARGON2_DECODING_FAIL;                                       \
+}                                                                      \
+(x) = (unsigned int)dec_x;                                                           \
+} while ((void)0, 0)
 
     /* Decoding prefix into binary */
 #define BIN(buf, max_len, len)                                                 \
@@ -310,11 +322,11 @@ int decode_string(argon2_context *ctx, const char *str, argon2_type type) {
         return ARGON2_INCORRECT_TYPE;
     }
     CC("$m=");
-    DECIMAL(ctx->m_cost);
+    DECIMALUINT32(ctx->m_cost);
     CC(",t=");
-    DECIMAL(ctx->t_cost);
+    DECIMALUINT32(ctx->t_cost);
     CC(",p=");
-    DECIMAL(ctx->lanes);
+    DECIMALUINT32(ctx->lanes);
     ctx->threads = ctx->lanes;
 
     CC_opt(",data=", BIN(ctx->ad, maxadlen, ctx->adlen));
